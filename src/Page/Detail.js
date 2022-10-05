@@ -28,7 +28,7 @@ const Detail =()=>{
     const curemotion = emotionList.find((it)=>parseInt(it.emotion_id) === parseInt(data.emotion));
     return(
       <div className="Detail">
-        <Header headtext={`${GetStringDate(new Date(data.date))} 기록`}
+        <Header headtext={`${GetStringDate(new Date(data.date))}의 기록`}
           leftChild={<Button text={'< 뒤로가기'} onClick={()=>nevigate('/')}/>}
           rightChild={<Button text={'수정하기'} onClick={()=>nevigate(`/edit/${id}`)}/>}/>
           <article>
