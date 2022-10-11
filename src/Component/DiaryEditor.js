@@ -1,8 +1,8 @@
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import { Navigate, useNavigate } from "react-router-dom";
 import EmoitonItem from "./EmotionItem";
-import { useContext, useEffect, useRef, useState } from "react";
 import { emotionList } from "../Util/Emotion";
 import TodoList from "./TodoList";
 import { DiaryDispatchContext } from "../App";
@@ -26,9 +26,9 @@ const DiaryEditor=({isEdit, data})=>{
     }
   },[isEdit,data])
 
-  const emotionHandler=(emotion_id)=>{
+  const emotionHandler=useCallback((emotion_id)=>{
     setEmotion(emotion_id);
-  }
+  },[])
 
   const todolistHandler=(text,index)=>{
     const filterlist = todoText.map((it)=>it.id===index ? {id : index, value:text ,isCheck:it.isCheck} :it);

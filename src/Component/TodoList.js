@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React,{ useCallback, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
 const TodoList =({id,onChangeText, onChangeCheck,value,isCheck ,isedit})=>{
@@ -7,7 +7,6 @@ const TodoList =({id,onChangeText, onChangeCheck,value,isCheck ,isedit})=>{
   const [check, setcheck] =useState(isCheck);
 
   useEffect(()=>{
-
     setText(value);
     setcheck(isCheck);
   },[value,isCheck])
@@ -44,15 +43,8 @@ const TodoList =({id,onChangeText, onChangeCheck,value,isCheck ,isedit})=>{
             <input type="text" value={text} readOnly={true}/>
         </div>
       }
-
     </div>
   )
 }
-TodoList.defaultProps = {
-  todotext:"",
-  onChangeCheck:null,
-  onChangeText:null,
-  ischeck:false
-}
 
-export default TodoList;
+export default React.memo(TodoList);
