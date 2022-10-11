@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { DiaryStateContext } from "../App";
 import Button from "../Component/Button";
 import Header from "../Component/Header";
+import TodoList from "../Component/TodoList";
 import { GetStringDate } from "../Util/Date";
 import { emotionList } from "../Util/Emotion";
+
 const Detail =()=>{
   const {id} =useParams();
   const Fulldata = useContext(DiaryStateContext);
@@ -34,13 +36,22 @@ const Detail =()=>{
           <article>
             <section>
               <h4>오늘의 감정</h4>
-              <img src={curemotion.emotion_img}></img>
+              <div className={["diary_img_wrapper",`diary_img_wrapper_${curemotion.emotion_id}`].join(" ")}>
+                <img src={curemotion.emotion_img}></img>
+                <div className="emotion_desc">{curemotion.emotion_descript}</div>
+              </div>
             </section>
             <section>
               <h4>오늘의 할일</h4>
+              <div className="Detail_todolist">
+                {data.todolist.map((it,idx)=><TodoList key={`detail_list_${idx}`} id ={idx} {...it} isedit ={false}/>)}
+              </div>
             </section>
             <section>
               <h4>오늘의 일기</h4>
+              <div className="Detail_content">
+                <p>{data.content}</p>
+              </div>
             </section>
           </article>
       </div>

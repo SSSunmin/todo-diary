@@ -48,7 +48,7 @@ const DiaryEditor=({isEdit, data})=>{
   const submitHandler=()=>{
     if(window.confirm(isEdit ?'수정하시겠습니까?' : '저장하시겠습니까?')){
       if(isEdit){
-        onEdit(data[0].id,date, content, emotion, todoText);
+        onEdit(data.id,date, content, emotion, todoText);
       }else{
         onCreate(date, content, emotion, todoText);
       }
@@ -58,7 +58,7 @@ const DiaryEditor=({isEdit, data})=>{
 
   const RemoveHandler=()=>{
     if(window.confirm('정말 삭제하시겠습니까?')){
-      onRemove(data[0].id);
+      onRemove(data.id);
       nevigate('/',{replace:true})
     }
   }
@@ -90,7 +90,8 @@ const DiaryEditor=({isEdit, data})=>{
           id={index} 
           {...it}
           onChangeText={todolistHandler} 
-          onChangeCheck={todoCheckHandler}/>)}       
+          onChangeCheck={todoCheckHandler}
+          isedit={true}/>)}       
         </div>
         <div className="pulsBtn">
           <img src={process.env.PUBLIC_URL+'/assets/plus.png'} onClick={addTodolist}/>

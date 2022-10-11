@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Detail from './Page/Detail';
@@ -9,7 +9,7 @@ import New from './Page/New';
 const dummyData=[
   {
     id:1,
-    date:1664353011558,
+    date:1665037601917,
     content:'일기1',
     emotion: 1,
     todolist:[
@@ -20,7 +20,7 @@ const dummyData=[
   },
   {
     id:2,
-    date:1664353011559,
+    date:1665037601918,
     content:'일기2',
     emotion: 2,
     todolist:[
@@ -29,7 +29,7 @@ const dummyData=[
   },
   {
     id:3,
-    date:1664353011560,
+    date:1665037601919,
     content:'일기3',
     emotion: 3,
     todolist:[
@@ -40,7 +40,7 @@ const dummyData=[
   },
   {
     id:4,
-    date:1664353011561,
+    date:1665037601920,
     content:'일기4',
     emotion: 4,
     todolist:[
@@ -51,7 +51,7 @@ const dummyData=[
   },
   {
     id:5,
-    date:1664353011562,
+    date:1665037601921,
     content:'일기5',
     emotion: 5,
     todolist:[
@@ -69,10 +69,11 @@ const reducer =(state,action)=>{
       return action.data;
     }
     case 'CREATE':{
-      const newItem={
-        ...action.data
-      };
-      newstate=[newItem,...state];
+      // const newItem={
+      //   ...action.data
+      // };
+      // newstate=[newItem,...state];
+      newstate = [action.data, ...state]
       break;
     }
     case 'REMOVE':{
@@ -87,14 +88,28 @@ const reducer =(state,action)=>{
       return state;
     }
   }
+  localStorage.setItem('diary',JSON.stringify(newstate))
   return newstate;
 }
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 function App() { 
-  const [data,dispatch] = useReducer(reducer,dummyData);
-  const dataId = useRef(5);
+  const [data,dispatch] = useReducer(reducer,[]);
+  const dataId = useRef(0);
+
+  useEffect(()=>{
+    const localData = localStorage.getItem('diary');
+
+    if(localData){
+      const diarylist = JSON.parse(localData).sort((a,b)=>parseInt(b.id) - parseInt(a.id));
+
+      if(diarylist.length >=1){
+        dataId.current = parseInt(diarylist[0].id)+1;
+        dispatch({type:'INIT' , data : diarylist});
+      }
+    }
+  },[])
 
   const onCreate=(date, content, emotion,todolist)=>{
     const newItem={
