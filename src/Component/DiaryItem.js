@@ -13,8 +13,8 @@ const DiaryItem =({id, emotion, content, date,todolist})=>{
   }
   const getSuccessPercent=()=>{
     let count = 0;
-    todolist.map((it)=> it.isCheck? count++: count);
-    return (count/todolist.length)*100;
+    todolist.map((it)=> it.isCheck? count++: count);  
+    return  Math.floor((count/todolist.length)*100);
   }
 
   return(
@@ -23,13 +23,16 @@ const DiaryItem =({id, emotion, content, date,todolist})=>{
         <img src={process.env.PUBLIC_URL+`assets/emotion${emotion}.png`}/>
       </div>
       <div onClick={goDetail} className={"info_wrapper"}>
-        <div className="dirary_date">{strDate}</div>
-        <div className="diary_content_preview">{content.slice(0,25)}</div>        
+        <div className="dirary_date_wrapper">
+          <div className="dirary_date">{strDate}</div>
+          <div className="diary_content_preview">{content.slice(0,12)}</div>       
+        </div>
+          <div className="TodoSuccess_wrapper">
+          <h4>달성률</h4>
+          <div className="TodoPercent"> {`${getSuccessPercent()}%`}</div>
+        </div> 
       </div>
-      <div className="TodoSuccess_wrapper">
-        <h4>달성률</h4>
-        <div className="TodoPercent"> {`${getSuccessPercent()}%`}</div>
-      </div>
+     
       <div className="btn_wrapper">
         <Button text={"수정하기"} onClick={goEdit}/>
       </div>

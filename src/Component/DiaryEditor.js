@@ -18,6 +18,11 @@ const DiaryEditor=({isEdit, data})=>{
   const {onCreate,onEdit,onRemove} = useContext(DiaryDispatchContext);
 
   useEffect(()=>{
+    const title = document.getElementsByTagName('title')[0];
+    title.innerHTML=isEdit? `${data.id}번 일기 수정하기` : `새 일기쓰기`
+  },[])
+
+  useEffect(()=>{
     if(isEdit){
       setEmotion(data.emotion);
       setDate(GetStringDate(new Date(parseInt(data.date))));

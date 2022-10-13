@@ -23,6 +23,10 @@ const Detail =()=>{
       }
     }     
   },[id,Fulldata])
+  useEffect(()=>{
+    const title = document.getElementsByTagName('title')[0];
+    title.innerHTML=`${id}번 일기 상세보기`
+  },[])
 
   if(!data){
     return <div className="Detail">로딩중입니다....</div>

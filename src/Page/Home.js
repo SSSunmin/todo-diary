@@ -36,6 +36,10 @@ const Home =()=>{
     }
 
   },[diaryList,curdate])
+  useEffect(()=>{
+    const title = document.getElementsByTagName('title')[0];
+    title.innerHTML=`감정 일기장`
+  },[])
 
   return(
     <div className="Home">
