@@ -15,10 +15,44 @@ body{
   .App{
     width: 640px;
   }
+  .DiaryItem .info_wrapper .dirary_date{
+    font-size: 25px;
+    min-width: 95px;
+  }
+  .DiaryItem .info_wrapper .diary_content_preview{
+    font-size: 20px;
+  }
+  .DiaryItem .TodoSuccess_wrapper h4{
+    font-size: 20px;
+    min-width: 95px;
+  }
+  .DiaryItem .TodoSuccess_wrapper .TodoPercent{
+    font-size: 20px;
+  }
+  .DiaryItem .emotion_wrapper{
+    min-width: 120px;
+  }
 }
 @media(max-width : 650px){/* 650보다 화면이 작을때 90vw로 고정*/
   .App{
     width: 90vw;
+  }
+  .DiaryItem .info_wrapper .dirary_date{
+    font-size: 20px;
+    min-width: 80px;
+  }
+  .DiaryItem .info_wrapper .diary_content_preview{
+    font-size: 15px;
+  }
+  .DiaryItem .TodoSuccess_wrapper h4{
+    font-size: 15px;
+    min-width: 80px;
+  }
+  .DiaryItem .TodoSuccess_wrapper .TodoPercent{
+    font-size: 20px;
+  }
+  .DiaryItem .emotion_wrapper{
+    min-width: 70px;
   }
 }
 
@@ -31,9 +65,6 @@ body{
   min-height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
-}
-.Home{
-
 }
 
 header{
@@ -99,9 +130,7 @@ header .head_btn_right{
   color:  white;
 }
 
-.DiaryList{
 
-}
 .DiaryList .menu_wrapper{
   width: 100%;
   margin-top: 20px;
@@ -137,7 +166,6 @@ header .head_btn_right{
 .DiaryItem{
   display: flex;
   justify-content: space-between;
-
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 2px solid rgba(239, 160, 160, 0.584);
@@ -145,11 +173,13 @@ header .head_btn_right{
 
 .DiaryItem .emotion_wrapper{
   cursor: pointer;
-  min-width: 120px;
   height: 80px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
+}
+.DiaryItem .emotion_wrapper img{
+  min-width:70%;
 }
 .DiaryItem .emotion_img_wrapper_1{
   background-color: #fd565f;
@@ -168,19 +198,32 @@ header .head_btn_right{
 }
 .DiaryItem .info_wrapper{
   flex-grow: 1;
+  align-items: center;
   padding-left: 20px;
   text-align: left;
   cursor: pointer;
 }
 
+.DiaryItem .dirary_date_wrapper{
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
 .DiaryItem .info_wrapper .dirary_date{
-  font-size: 25px;
+  height: 40px;
+  padding-top: 7px;
   font-weight: bold;
-  margin-bottom: 5px;
+  align-content: center;
+  justify-content: center;
 }
 
 .DiaryItem .info_wrapper .diary_content_preview{
-  font-size: 20px;
+  flex-grow: 1;
+  height: 40px;
+  padding-left: 10px;
+  padding-top:10px;
+  align-items: baseline;
 }
 
 .DiaryItem .info_wrapper .btn_wrapper{
@@ -188,18 +231,20 @@ header .head_btn_right{
 }
 
 .DiaryItem .TodoSuccess_wrapper{
-  min-width: 100px;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 .DiaryItem .TodoSuccess_wrapper .TodoPercent{
- height: 30px;
- font-size: 20px;
- text-align: center;
+  flex-grow: 1;
+  padding-left: 10px;
+  padding-top: 20px;
+  height: 40px;
 }
 .DiaryItem .TodoSuccess_wrapper h4{
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 20px;
   text-align: center;
+  margin: 0px;
 }
 
 .New h4{
@@ -215,9 +260,6 @@ header .head_btn_right{
   display: grid;
   grid-template-columns: repeat(5,auto);
   gap:2%;
-}
-.DiaryEditor .new_date_wrapper{
-
 }
 
 .DiaryEditor .input_date{
